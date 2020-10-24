@@ -30,4 +30,4 @@ Once a game is started, no one can join it anymore.
 
 ## Architechture and stack
 
-[![Archi](archi_diagram.png)]
+![Archi](archi_diagram.png)
