@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 LobbyManager="*res://scripts/globals/LobbyManager.gd"
 WsManager="*res://scripts/globals/WsManager.gd"
+UserManager="*res://scripts/globals/UserManager.gd"
 
 [display]
 

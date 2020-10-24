@@ -30,7 +30,7 @@ class User {
 
     onDeleted() {
         for(let id in this.rooms) {
-            this.rooms[id].room.onUserLeft(this)
+            this.rooms[id].onUserLeft(this)
         }
     }
 

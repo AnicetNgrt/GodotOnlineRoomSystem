@@ -21,8 +21,8 @@ class Room {
     join(user) {
         if(this.users.length >= this.maxUsers) return false
         user.sendData(messages.JOINED_ROOM(this.id, this.getUsersND()))
-        this.sendDataToEveryone(messages.USER_JOINED(this.id, this.getUserND(user)))
         this.users.push(user)
+        this.sendDataToEveryone(messages.USER_JOINED(this.id, this.getUserND(user)))
         return true
     }
 
@@ -45,7 +45,7 @@ class Room {
     }
 
     getUserND(user) {
-        user.toNetworkData()
+        return user.toNetworkData()
     }
 }
 

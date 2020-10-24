@@ -37,7 +37,6 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="VBoxContainer" parent="Control"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -169,6 +168,7 @@ size_flags_horizontal = 4
 text = "Back"
 
 [node name="InsideLobbyMenu" type="Control" parent="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -218,22 +218,16 @@ __meta__ = {
 }
 
 [node name="ConnectionLists" type="VBoxContainer" parent="Control/InsideLobbyMenu/Lists"]
-margin_right = 280.0
-margin_bottom = 140.0
+margin_right = 196.0
+margin_bottom = 60.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerList" parent="Control/InsideLobbyMenu/Lists/ConnectionLists" instance=ExtResource( 11 )]
-margin_right = 280.0
-title = "Players"
-
-[node name="SpecList" parent="Control/InsideLobbyMenu/Lists/ConnectionLists" instance=ExtResource( 11 )]
-margin_top = 80.0
-margin_right = 280.0
-margin_bottom = 140.0
-title = "Spectators"
+margin_right = 196.0
+title = "Players: "
 
 [node name="StartButton" parent="Control/InsideLobbyMenu" instance=ExtResource( 6 )]
 anchor_left = 0.5
@@ -248,7 +242,6 @@ rect_pivot_offset = Vector2( 123.273, 29.3542 )
 text = "Start Game"
 
 [node name="H1" parent="Control" instance=ExtResource( 8 )]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -243.143

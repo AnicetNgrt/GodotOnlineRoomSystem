@@ -5,72 +5,36 @@ export var websocket_url = "ws://localhost:3001"
 
 
 func _ready():
-	WsManager.connect("data_received", self, '_on_data')
+	UserManager.connect("username_changed", self, "on_username_changed")
+	LobbyManager.connect("room_joined", self, "on_room_joined")
+	LobbyManager.connect("user_joined", self, "on_user_joined")
+	LobbyManager.connect("failed_to_join_room", self, "on_failed_to_join_room")
 	WsManager.connect_to_ws(websocket_url)
 
 
-func _on_data(data):
-	print(data)
-	match data.message:
-		"Your id":
-			_handle_my_id_received(data)
-		"Joined room":
-			_handle_room_joined(data)
-		"Guest joined":
-			_handle_player_joined(data)
-		"Failed to join game":
-			_handle_failed_to_join_game(data)
-
-
 func _on_Create_pressed():
-	WsManager.send_data({"message": "create"})
+	LobbyManager.create_room()
 	_hide_main_menu()
 	_start_loading()
 
 
-func _handle_my_id_received(data):
-	LobbyManager.selfId = data.get("id")
-	LobbyManager.username = data.get("name")
-	$Control/MainMenu/Username.text = "Connected as: " + data.get("name")
+func on_username_changed(username):
+	$Control/MainMenu/Username.text = "Connected as: " + username
 
 
-func _handle_room_joined(data):
-	LobbyManager.lobby = {
-		"id": data.get("gameId"), "guests": data.get("guests"), "spectators": data.get("spectators")
-	}
+func on_room_joined(room):
 	_stop_loading()
 	_show_lobby()
-	if data.get("role") != "spectator":
-		_handle_player_joined(
-			{"guest": 
-				{"id":LobbyManager.selfId, "name": LobbyManager.username, "isHost":false}
-			}
-		)
-	else:
-		_handle_spectator_joined(
-			{"guest": 
-				{"id":LobbyManager.selfId, "name": LobbyManager.username, "isHost":false}
-			}
-		)
 
 
-func _handle_failed_to_join_game(data):
+func on_failed_to_join_room(message, reason):
 	_stop_loading()
-	_show_error(data.message + ": " + data.reason)
+	_show_error(message + ": " + reason)
 
 
-func _handle_player_joined(data):
-	var guestND = data.get("guest")
-	LobbyManager.lobby.guests.push_back(
-		{"id": guestND.get("id"), "name": guestND.get("name"), "isHost": guestND.get("isHost")}
-	)
-
-func _handle_spectator_joined(data):
-	var guestND = data.get("guest")
-	LobbyManager.lobby.spectators.push_back(
-		{"id": guestND.get("id"), "name": guestND.get("name"), "isHost": guestND.get("isHost")}
-	)
-
+func on_user_joined(userND):
+	var listUi = $Control/InsideLobbyMenu/Lists/ConnectionLists/PlayerList
+	listUi.add_connection(userND)
 
 func _show_main_menu():
 	$Control/H1.show()
