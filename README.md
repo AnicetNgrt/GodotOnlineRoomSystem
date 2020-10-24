@@ -15,11 +15,10 @@ and the server then accepts the connection and assigns an ID to the client.
 
 Then the player is prompted with two choices: create a game (or room) or join a game (or room).
 
-When a player chooses to create a game a code is given to it by the server. The player can
-give it to the other players for them to connect.
+When a player chooses to create a game, the room's code is given to it by the server. The player can 
+then give it to the other players for them to join with.
 
-When a player chooses to connect, it has to enter a code which identifies the game it wants
-to join.
+When a player chooses to connect, it has to enter the room's code.
 
 When someone joins or leaves a room, all the guests are notified.
 

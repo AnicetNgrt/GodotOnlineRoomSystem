@@ -1,0 +1,22 @@
+{
+  "name": "zugzwang-server",
+  "version": "0.1.0",
+  "description": "game server for zugzwang",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "Anicet Nougaret & contributors",
+  "license": "All rights reserved",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "uuid": "^8.3.1",
+    "ws": "^7.3.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.11.0"
+  }
+}
