@@ -1,4 +1,4 @@
-# Websocket online room system boilerplate for Godot Engine
+# Websocket online room system for Godot Engine
 
 This is a template you can start any (casual) multiplayer project from.
 
@@ -30,3 +30,4 @@ Once a game is started, no one can join it anymore.
 
 ## Architechture and stack
 
+[![Archi](archi_diagram.png)]
