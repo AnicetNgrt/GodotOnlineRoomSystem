@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/BaseUiComponents/H2/H2Font.tres" type="DynamicFont" id=1]
+
+[node name="Label" type="Label"]
+margin_right = 270.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+text = "Loading..."
+__meta__ = {
+"_edit_use_anchors_": false
+}

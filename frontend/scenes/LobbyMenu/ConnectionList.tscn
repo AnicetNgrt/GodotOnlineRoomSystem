@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/LobbyMenu/ConnectionList.gd" type="Script" id=1]
+[ext_resource path="res://scenes/BaseUiComponents/H2/H2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/BaseUiComponents/RegularLabel/RegularLabel.tscn" type="PackedScene" id=4]
+
+[node name="ConnectionList" type="VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 60.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+margin_right = 252.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+text = "Group"
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_top = 60.0
+margin_right = 252.0
+margin_bottom = 60.0
+custom_constants/margin_left = 26
+
+[node name="Rows" type="VBoxContainer" parent="Margin"]
+margin_left = 26.0
+margin_right = 252.0
+
+[node name="Template" type="HBoxContainer" parent="Margin/Rows"]
+visible = false
+margin_right = 310.0
+margin_bottom = 40.0
+
+[node name="IsHost" parent="Margin/Rows/Template" instance=ExtResource( 4 )]
+visible = false
+margin_right = 140.0
+rect_min_size = Vector2( 140, 0 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+text = "[HOST]"
+
+[node name="Name" parent="Margin/Rows/Template" instance=ExtResource( 4 )]
+margin_right = 300.0
+rect_min_size = Vector2( 300, 0 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+text = "Name"
+
+[node name="Ping" parent="Margin/Rows/Template" instance=ExtResource( 4 )]
+visible = false
+margin_left = 304.0
+margin_right = 424.0
+rect_min_size = Vector2( 120, 0 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+text = "100ms"

@@ -1,0 +1,283 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://scenes/LobbyMenu/LobbyMenuScript.gd" type="Script" id=1]
+[ext_resource path="res://scenes/LobbyMenu/InsideLobbyMenuScript.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/fonts/apl/APL386.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/BaseUiComponents/RegularLabel/RegularLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/BaseUiComponents/H2/H2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/BaseUiComponents/Button/Button.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/BaseUiComponents/LineEdit/LineEdit.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/BaseUiComponents/H1/H1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/LobbyMenu/RoomCodeFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/icons/wireframe-globe.png" type="Texture" id=10]
+[ext_resource path="res://scenes/LobbyMenu/ConnectionList.tscn" type="PackedScene" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="LobbyMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.027451, 0.231373, 0.298039, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -351.5
+margin_top = -196.0
+margin_right = 348.5
+margin_bottom = 278.0
+custom_constants/separation = 40
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Username" parent="Control/MainMenu" instance=ExtResource( 5 )]
+margin_right = 700.0
+margin_bottom = 56.0
+text = "Waiting for connection..."
+align = 1
+
+[node name="ChooseName" type="HBoxContainer" parent="Control/MainMenu"]
+margin_left = 70.0
+margin_top = 96.0
+margin_right = 630.0
+margin_bottom = 146.0
+size_flags_horizontal = 4
+custom_constants/separation = 20
+
+[node name="LineEdit" parent="Control/MainMenu/ChooseName" instance=ExtResource( 7 )]
+margin_top = 0.0
+margin_right = 280.0
+margin_bottom = 50.0
+align = 1
+max_length = 10
+placeholder_text = "new name"
+
+[node name="ButtonSetName" parent="Control/MainMenu/ChooseName" instance=ExtResource( 6 )]
+margin_left = 300.0
+margin_right = 560.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 168.5, 28 )
+text = "Change name"
+
+[node name="Separator2" parent="Control/MainMenu" instance=ExtResource( 4 )]
+margin_top = 186.0
+margin_right = 700.0
+margin_bottom = 226.0
+text = "~ ~ ~"
+
+[node name="Join" type="HBoxContainer" parent="Control/MainMenu"]
+margin_top = 266.0
+margin_right = 700.0
+margin_bottom = 316.0
+size_flags_horizontal = 5
+custom_constants/separation = 20
+alignment = 1
+
+[node name="LineEdit" parent="Control/MainMenu/Join" instance=ExtResource( 7 )]
+margin_left = 140.0
+margin_top = 0.0
+margin_right = 420.0
+margin_bottom = 50.0
+align = 1
+
+[node name="ButtonJoin" parent="Control/MainMenu/Join" instance=ExtResource( 6 )]
+margin_left = 440.0
+margin_right = 560.0
+margin_bottom = 50.0
+text = "Join"
+
+[node name="Separator" parent="Control/MainMenu" instance=ExtResource( 4 )]
+margin_top = 356.0
+margin_right = 700.0
+margin_bottom = 396.0
+text = "~ ~ ~"
+
+[node name="Create" parent="Control/MainMenu" instance=ExtResource( 6 )]
+margin_left = 220.0
+margin_top = 436.0
+margin_right = 480.0
+margin_bottom = 486.0
+size_flags_horizontal = 4
+text = "Create room"
+
+[node name="Loading" type="HBoxContainer" parent="Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -135.0
+margin_top = -26.0
+margin_right = 135.0
+margin_bottom = 26.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="Control/Loading" instance=ExtResource( 5 )]
+margin_right = 280.0
+margin_bottom = 56.0
+
+[node name="Error" type="VBoxContainer" parent="Control"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -26.0
+margin_bottom = 26.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorMessage" parent="Control/Error" instance=ExtResource( 5 )]
+margin_right = 1920.0
+margin_bottom = 56.0
+text = "Error message"
+align = 1
+
+[node name="ButtonBackError" parent="Control/Error" instance=ExtResource( 6 )]
+margin_left = 884.0
+margin_top = 76.0
+margin_right = 1036.0
+margin_bottom = 122.0
+size_flags_horizontal = 4
+text = "Back"
+
+[node name="InsideLobbyMenu" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InviteCode" type="VBoxContainer" parent="Control/InsideLobbyMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -255.762
+margin_top = -200.992
+margin_right = 264.238
+margin_bottom = -65.9923
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" parent="Control/InsideLobbyMenu/InviteCode" instance=ExtResource( 5 )]
+margin_right = 520.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 1 )
+text = "Room code:"
+align = 1
+
+[node name="LineEdit" parent="Control/InsideLobbyMenu/InviteCode" instance=ExtResource( 7 )]
+margin_top = 48.0
+margin_right = 520.0
+margin_bottom = 135.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color_uneditable = Color( 0, 0, 0, 1 )
+align = 1
+editable = false
+placeholder_text = "red sus"
+
+[node name="Lists" type="ScrollContainer" parent="Control/InsideLobbyMenu"]
+margin_left = 30.2905
+margin_top = 26.727
+margin_right = 630.291
+margin_bottom = 901.727
+rect_min_size = Vector2( 600, 875 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConnectionLists" type="VBoxContainer" parent="Control/InsideLobbyMenu/Lists"]
+margin_right = 280.0
+margin_bottom = 140.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerList" parent="Control/InsideLobbyMenu/Lists/ConnectionLists" instance=ExtResource( 11 )]
+margin_right = 280.0
+title = "Players"
+
+[node name="SpecList" parent="Control/InsideLobbyMenu/Lists/ConnectionLists" instance=ExtResource( 11 )]
+margin_top = 80.0
+margin_right = 280.0
+margin_bottom = 140.0
+title = "Spectators"
+
+[node name="StartButton" parent="Control/InsideLobbyMenu" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -25.0
+margin_right = 120.0
+margin_bottom = 25.0
+rect_pivot_offset = Vector2( 123.273, 29.3542 )
+text = "Start Game"
+
+[node name="H1" parent="Control" instance=ExtResource( 8 )]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -243.143
+margin_top = 29.8058
+margin_right = 438.857
+margin_bottom = 280.806
+
+[node name="wireframe-globe" type="Sprite" parent="Control/H1"]
+modulate = Color( 0.0235294, 0.839216, 0.627451, 1 )
+position = Vector2( -128.639, 119.536 )
+scale = Vector2( 0.443188, 0.443188 )
+texture = ExtResource( 10 )
+
+[node name="FooterCredits" parent="Control" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -944.0
+margin_top = -138.0
+margin_right = 516.0
+margin_bottom = -12.0
+custom_colors/font_color = Color( 0.937255, 0.278431, 0.435294, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "/* A template by Anicet Nougaret (@AniC_dev)
+ * Credit is due when using this within your projects, commercial or not.
+ * This is only the frontend, you need the server to be running */"
+align = 0
+[connection signal="pressed" from="Control/MainMenu/ChooseName/ButtonSetName" to="." method="_on_ButtonSetName_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Join/ButtonJoin" to="." method="_on_ButtonJoin_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Create" to="." method="_on_Create_pressed"]
+[connection signal="pressed" from="Control/Error/ButtonBackError" to="." method="_on_ButtonBackError_pressed"]

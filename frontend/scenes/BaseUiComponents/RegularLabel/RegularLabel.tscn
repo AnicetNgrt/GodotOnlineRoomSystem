@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/BaseUiComponents/RegularLabel/RegularLabelFont.tres" type="DynamicFont" id=1]
+
+[node name="RegularLabel" type="Label"]
+margin_right = 420.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

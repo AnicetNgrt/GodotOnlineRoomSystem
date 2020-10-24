@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/BaseUiComponents/H1/H1Font.tres" type="DynamicFont" id=1]
+
+[node name="H1" type="Label"]
+margin_right = 682.0
+margin_bottom = 251.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
+custom_colors/font_outline_modulate = Color( 0.196078, 0.207843, 0.282353, 1 )
+text = "Online game
+boilerplate"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
