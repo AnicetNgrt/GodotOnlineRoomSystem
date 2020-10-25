@@ -2,13 +2,14 @@
 ![Screenshot](resources/screenshot1.png)
 
 - [What is it ?](#what-is-it-)
+- [Supported platforms](#supported-platforms)
 - [How it works](#how-it-works)
 - [How to launch](#how-to-launch)
 
 
 # What is it ?
 
-This is a template you can start any (casual) multiplayer project from.
+This is a template you can start any (non AAA) multiplayer project from.
 
 It implements the very popular **game room** and **secret code connection system**. Which you
 certainly have already experienced in games such as **Among Us** or **Agar.io**.
@@ -21,6 +22,16 @@ advanced security concerns.
 
 For the frontend it is plain [Godot Engine](https://godotengine.org/) and GdScript. 
 It connects to the server via [WebSockets](https://docs.godotengine.org/en/stable/tutorials/networking/websocket.html).
+
+# Supported platforms
+
+The frontend was tested on several platforms, feel free to give us your results.
+
+- [x] HTML5 Firefox
+- [x] Linux Ubuntu
+- [x] Windows 10
+
+Other platforms are probably fine too. But you'll have to test them by yourself.
 
 # How it works
 
