@@ -16,7 +16,7 @@ certainly have already experienced in games such as **Among Us** or **Agar.io**.
 This is based on [Node.js](https://nodejs.org/en/), an insanely popular javascript runtime for backend software (webservers,
 real-time game servers, APIs...). Although making game servers with Node.js is not very memory efficient,
 unlike the traditionnal way of doing which involves C or C++ (or even Rust nowadays), developping with
-it is very easy and fast. It is super appropriate for making [Minimal Viable Products](https://www.youtube.com/watch?v=F_1km66t8jQ). Just avoid having AAA trafic and
+it is very easy and fast. It is super appropriate for making [Minimum Viable Products](https://www.youtube.com/watch?v=F_1km66t8jQ). Just avoid having AAA trafic and
 advanced security concerns.
 
 For the frontend it is plain [Godot Engine](https://godotengine.org/) and GdScript. 
