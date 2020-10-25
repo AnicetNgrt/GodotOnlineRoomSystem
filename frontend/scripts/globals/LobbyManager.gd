@@ -3,26 +3,23 @@ extends Node
 signal room_joined(room)
 signal user_joined(userND)
 signal user_left(userND)
-signal left_room()
+signal left_room
 signal failed_to_join_room(message, reason)
-signal room_deleted()
+signal room_deleted
 
 var room = null
+
 
 func create_room():
 	WsManager.send_data({"message": "create room"})
 
 
 func join_room(id):
-	WsManager.send_data(
-		{"message": "join room", "gameId": id}
-	)
+	WsManager.send_data({"message": "join room", "gameId": id})
 
 
 func leave_room():
-	WsManager.send_data(
-		{"message": "leave room", "gameId": room.get("id")}
-	)
+	WsManager.send_data({"message": "leave room", "gameId": room.get("id")})
 
 
 func get_room_id():
@@ -31,6 +28,7 @@ func get_room_id():
 
 func _ready():
 	WsManager.connect("data_received", self, '_on_data')
+
 
 func _on_data(data):
 	print(data)
@@ -46,10 +44,11 @@ func _on_data(data):
 		"Room deleted":
 			_handle_room_deleted(data)
 
+
 func _handle_room_joined(data):
-	room = { "id":data.get("roomId"), "usersND":[] }
+	room = {"id": data.get("roomId"), "usersND": []}
 	for userND in data.get("usersND"):
-		_handle_user_joined({"userND":userND})
+		_handle_user_joined({"userND": userND})
 	emit_signal("room_joined", room)
 
 
@@ -60,7 +59,7 @@ func _handle_user_joined(data):
 
 func _handle_user_left(data):
 	var to_delete = get_userND_by_id(data.get("userId"))
-	if to_delete != null: 
+	if to_delete != null:
 		room.get("usersND").erase(to_delete)
 		if to_delete.get("id") == UserManager.selfId:
 			emit_signal("left_room")
