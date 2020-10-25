@@ -28,6 +28,7 @@ class Room {
 
     onUserLeft(user) {
         this.sendDataToEveryone(messages.USER_LEFT(this.id, user.id))
+        this.users.splice(this.users.indexOf(user), 1)
     }
 
     onStart() {

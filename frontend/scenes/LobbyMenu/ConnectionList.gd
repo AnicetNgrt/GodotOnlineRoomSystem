@@ -23,5 +23,11 @@ func update_connection(userND, ping=""):
 func remove_connection(userND):
 	var row = get_node("Margin/Rows/"+userND.get("id"))
 	if row != null:
-		remove_child(row)
+		row.get_parent().remove_child(row)
 		row.queue_free()
+
+func reset():
+	var rows = get_node("Margin/Rows/")
+	while rows.get_child_count() > 1:
+		var child = rows.get_child(rows.get_child_count()-1)
+		rows.remove_child(child)

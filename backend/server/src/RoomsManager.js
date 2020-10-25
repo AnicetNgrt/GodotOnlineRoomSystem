@@ -42,6 +42,9 @@ class RoomsManager {
         if(this.rooms[id] && user.rooms[id]) {
             let room = user.rooms[id]
             room.onUserLeft(user)
+            if(room.users.length <= 0) {
+                this.removeRoom(room)
+            }
         }
     }
     

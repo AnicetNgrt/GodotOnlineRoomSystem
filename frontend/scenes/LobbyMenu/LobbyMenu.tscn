@@ -218,7 +218,7 @@ __meta__ = {
 }
 
 [node name="ConnectionLists" type="VBoxContainer" parent="Control/InsideLobbyMenu/Lists"]
-margin_right = 196.0
+margin_right = 252.0
 margin_bottom = 60.0
 custom_constants/separation = 20
 __meta__ = {
@@ -226,7 +226,6 @@ __meta__ = {
 }
 
 [node name="PlayerList" parent="Control/InsideLobbyMenu/Lists/ConnectionLists" instance=ExtResource( 11 )]
-margin_right = 196.0
 title = "Players: "
 
 [node name="StartButton" parent="Control/InsideLobbyMenu" instance=ExtResource( 6 )]
@@ -240,6 +239,18 @@ margin_right = 120.0
 margin_bottom = 25.0
 rect_pivot_offset = Vector2( 123.273, 29.3542 )
 text = "Start Game"
+
+[node name="LeaveButton" parent="Control/InsideLobbyMenu" instance=ExtResource( 6 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -69.9999
+margin_top = 160.0
+margin_right = 70.0
+margin_bottom = 210.0
+rect_pivot_offset = Vector2( 123.273, 29.3542 )
+text = "Leave"
 
 [node name="H1" parent="Control" instance=ExtResource( 8 )]
 anchor_left = 0.5
@@ -274,3 +285,4 @@ align = 0
 [connection signal="pressed" from="Control/MainMenu/Join/ButtonJoin" to="." method="_on_ButtonJoin_pressed"]
 [connection signal="pressed" from="Control/MainMenu/Create" to="." method="_on_Create_pressed"]
 [connection signal="pressed" from="Control/Error/ButtonBackError" to="." method="_on_ButtonBackError_pressed"]
+[connection signal="pressed" from="Control/InsideLobbyMenu/LeaveButton" to="." method="_on_LeaveButton_pressed"]

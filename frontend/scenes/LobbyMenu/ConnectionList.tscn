@@ -15,7 +15,6 @@ __meta__ = {
 [node name="Title" parent="." instance=ExtResource( 2 )]
 margin_right = 252.0
 margin_bottom = 56.0
-custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
 text = "Group"
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -37,19 +36,18 @@ margin_bottom = 40.0
 visible = false
 margin_right = 140.0
 rect_min_size = Vector2( 140, 0 )
-custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
 text = "[HOST]"
 
 [node name="Name" parent="Margin/Rows/Template" instance=ExtResource( 4 )]
 margin_right = 300.0
 rect_min_size = Vector2( 300, 0 )
-custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
 text = "Name"
+align = 0
 
 [node name="Ping" parent="Margin/Rows/Template" instance=ExtResource( 4 )]
 visible = false
 margin_left = 304.0
 margin_right = 424.0
 rect_min_size = Vector2( 120, 0 )
-custom_colors/font_color = Color( 0.0235294, 0.839216, 0.627451, 1 )
 text = "100ms"
+align = 0

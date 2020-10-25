@@ -3,12 +3,17 @@ extends Node
 # change this with the address and port of your server
 export var websocket_url = "ws://localhost:3001"
 
+onready var connections_list = $Control/InsideLobbyMenu/Lists/ConnectionLists/PlayerList
+
 
 func _ready():
 	UserManager.connect("username_changed", self, "on_username_changed")
 	LobbyManager.connect("room_joined", self, "on_room_joined")
 	LobbyManager.connect("user_joined", self, "on_user_joined")
+	LobbyManager.connect("user_left", self, "on_user_left")
+	LobbyManager.connect("left_room", self, "on_left_room")
 	LobbyManager.connect("failed_to_join_room", self, "on_failed_to_join_room")
+	LobbyManager.connect("room_deleted", self, "on_room_deleted")
 	WsManager.connect_to_ws(websocket_url)
 
 
@@ -33,8 +38,24 @@ func on_failed_to_join_room(message, reason):
 
 
 func on_user_joined(userND):
-	var listUi = $Control/InsideLobbyMenu/Lists/ConnectionLists/PlayerList
-	listUi.add_connection(userND)
+	connections_list.add_connection(userND)
+
+
+func on_user_left(userND):
+	connections_list.remove_connection(userND)
+
+
+func on_left_room():
+	connections_list.reset()
+	_hide_lobby()
+	_show_main_menu()
+
+
+func on_room_deleted():
+	connections_list.reset()
+	_hide_lobby()
+	_show_error("The room you were in got deleted")
+
 
 func _show_main_menu():
 	$Control/H1.show()
@@ -80,15 +101,11 @@ func _hide_error():
 
 
 func _on_ButtonSetName_pressed():
-	WsManager.send_data(
-		{"message": "my name is", "name": $Control/MainMenu/ChooseName/LineEdit.text}
-	)
+	UserManager.change_name($Control/MainMenu/ChooseName/LineEdit.text)
 
 
 func _on_ButtonJoin_pressed():
-	WsManager.send_data(
-		{"message": "join as guest", "gameId": $Control/MainMenu/Join/LineEdit.text}
-	)
+	LobbyManager.join_room($Control/MainMenu/Join/LineEdit.text)
 	_hide_main_menu()
 	_start_loading()
 
@@ -96,3 +113,7 @@ func _on_ButtonJoin_pressed():
 func _on_ButtonBackError_pressed():
 	_hide_error()
 	_show_main_menu()
+
+
+func _on_LeaveButton_pressed():
+	LobbyManager.leave_room()

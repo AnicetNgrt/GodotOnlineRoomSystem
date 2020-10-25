@@ -5,6 +5,11 @@ var username = ""
 
 signal username_changed(username)
 
+func change_name(new_name):
+	WsManager.send_data(
+		{"message": "my name is", "name": new_name}
+	)
+
 func _ready():
 	WsManager.connect("data_received", self, '_on_data')
 
