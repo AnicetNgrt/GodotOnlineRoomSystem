@@ -20,19 +20,26 @@ class RoomsManager {
             case 'leave room':
                 this.leaveRoom(sender, data.gameId)
                 break;
+            case 'start game':
+                this.startGame(sender, data.gameId)
+            case 'send host':
+                this.sendHost(sender, data.gameId)
         }
     }
     
     joinRoom(user, roomId) {
-        if(this.rooms[roomId]) {
-            let room = this.rooms[roomId]
-            let permitted = user.joinRoom(room)
-            if(!permitted) {
-                user.sendData(messages.FAILED_TO_JOIN_ROOM("access refused"))
-            }
-        } else {
+        let room = this.rooms[roomId]
+        if(!room) {
             user.sendData(messages.FAILED_TO_JOIN_ROOM("wrong code"))
-        }
+        } else if(room.users.length >= room.maxUsers) {
+            user.sendData(messages.FAILED_TO_JOIN_ROOM("room is full"))
+        } else if(room.started) {
+            user.sendData(messages.FAILED_TO_JOIN_ROOM("room is in game"))
+        } else if(room.users.indexOf(user) != -1) {
+            user.sendData(messages.FAILED_TO_JOIN_ROOM("already inside this room"))
+        } else if(!user.joinRoom(room)) {
+            user.sendData(messages.FAILED_TO_JOIN_ROOM("something went wrong"))
+        }    
     }
 
     leaveRoom(user, id) {
@@ -55,6 +62,18 @@ class RoomsManager {
     removeRoom(room) {
         room.onDeleted()
         delete this.rooms[room.id]
+    }
+
+    startGame(user, id) {
+        if(this.rooms[id] && user.rooms[id] && this.rooms[id].isHost(user) && !this.rooms[id].started) {
+            this.rooms[id].onStart()
+        }
+    }
+
+    sendHost(sender, id) {
+        if(this.rooms[id]) {
+            sender.sendData(messages.UPDATE_HOST(id, this.rooms[id].getHost().id))
+        }
     }
     
     /*startGame(user, id) {

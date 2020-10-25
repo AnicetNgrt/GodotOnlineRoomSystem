@@ -286,4 +286,5 @@ align = 0
 [connection signal="pressed" from="Control/MainMenu/Join/ButtonJoin" to="." method="_on_ButtonJoin_pressed"]
 [connection signal="pressed" from="Control/MainMenu/Create" to="." method="_on_Create_pressed"]
 [connection signal="pressed" from="Control/Error/ButtonBackError" to="." method="_on_ButtonBackError_pressed"]
+[connection signal="pressed" from="Control/InsideLobbyMenu/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Control/InsideLobbyMenu/LeaveButton" to="." method="_on_LeaveButton_pressed"]

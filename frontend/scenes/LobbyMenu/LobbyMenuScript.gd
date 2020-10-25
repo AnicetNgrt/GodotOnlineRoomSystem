@@ -14,6 +14,8 @@ func _ready():
 	LobbyManager.connect("left_room", self, "on_left_room")
 	LobbyManager.connect("failed_to_join_room", self, "on_failed_to_join_room")
 	LobbyManager.connect("room_deleted", self, "on_room_deleted")
+	LobbyManager.connect("host_updated", self, "on_host_updated")
+	LobbyManager.connect("game_started", self, "on_game_started")
 	WsManager.connect_to_ws(websocket_url)
 
 
@@ -55,6 +57,17 @@ func on_room_deleted():
 	connections_list.reset()
 	_hide_lobby()
 	_show_error("The room you were in got deleted")
+
+
+func on_game_started():
+	$Control/InsideLobbyMenu/InviteCode/LineEdit.text = "Started!"
+
+
+func on_host_updated(userId):
+	if userId == UserManager.selfId:
+		$Control/InsideLobbyMenu/StartButton.show()
+	else:
+		$Control/InsideLobbyMenu/StartButton.hide()
 
 
 func _show_main_menu():
@@ -117,3 +130,7 @@ func _on_ButtonBackError_pressed():
 
 func _on_LeaveButton_pressed():
 	LobbyManager.leave_room()
+
+
+func _on_StartButton_pressed():
+	LobbyManager.start_game()

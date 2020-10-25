@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="OnlineRoomsBP_Frontend"
+config/name="SpaceScoreJam10"
 run/main_scene="res://scenes/LobbyMenu/LobbyMenu.tscn"
 config/icon="res://icon.png"
 

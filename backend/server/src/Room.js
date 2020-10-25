@@ -9,6 +9,7 @@ const messages = require('./messages')
 class Room {
     id = englishWordGen()[0];
     users = [];
+    usersStates = {};
     maxUsers = 1024;
     started = false;
 
@@ -19,9 +20,10 @@ class Room {
     }
 
     join(user) {
-        if(this.users.length >= this.maxUsers) return false
+        if(this.users.indexOf(user) != -1) return false
         user.sendData(messages.JOINED_ROOM(this.id, this.getUsersND()))
         this.users.push(user)
+        this.usersStates[user.id] = {}
         this.sendDataToEveryone(messages.USER_JOINED(this.id, this.getUserND(user)))
         return true
     }
@@ -46,7 +48,15 @@ class Room {
     }
 
     getUserND(user) {
-        return user.toNetworkData()
+        return {...user.toNetworkData()/*, ...this.usersStates[user.id]*/}
+    }
+
+    isHost(user) {
+        return this.users.indexOf(user) == 0
+    }
+
+    getHost() {
+        return this.users[0]
     }
 }
 
