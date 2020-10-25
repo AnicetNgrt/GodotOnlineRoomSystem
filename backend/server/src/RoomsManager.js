@@ -20,9 +20,6 @@ class RoomsManager {
             case 'leave room':
                 this.leaveRoom(sender, data.gameId)
                 break;
-            case 'start game':
-                this.startGame(sender, data.gameId)
-                break;
         }
     }
     
@@ -60,12 +57,12 @@ class RoomsManager {
         delete this.rooms[room.id]
     }
     
-    startGame(user, id) {
+    /*startGame(user, id) {
         if(this.rooms[id] && user.rooms[id]) {
             let room = user.rooms[id];
             room.onStart();
         }
-    }
+    }*/
 }
 
 let singleton = new RoomsManager()
