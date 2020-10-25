@@ -1,4 +1,12 @@
-# Websocket online room system for Godot Engine
+
+![Screenshot](resources/screenshot1-croped.png)
+
+- [What is it ?](#what-is-it-)
+- [How it works](#how-it-works)
+- [How to launch](#how-to-launch)
+
+
+# What is it ?
 
 This is a template you can start any (casual) multiplayer project from.
 
@@ -11,8 +19,37 @@ unlike the traditionnal way of doing which involves C or C++ (or even Rust nowad
 it is very easy and fast. It is super appropriate for making [Minimal Viable Products](https://www.youtube.com/watch?v=F_1km66t8jQ). Just avoid having AAA trafic and
 advanced security concerns.
 
-For the frontend its plain [Godot Engine](https://godotengine.org/) and GdScript. 
+For the frontend it is plain [Godot Engine](https://godotengine.org/) and GdScript. 
 It connects to the server via [WebSockets](https://docs.godotengine.org/en/stable/tutorials/networking/websocket.html).
+
+# How it works
+
+## The system
+
+In this room system a client (or frontent) (the player's version of the software) connects via a 
+networking protocol to a server (a private and confidential software, which is part of the backend).
+
+The client declares itself with a name the player has chosen through the game's UI,
+and the server then accepts the connection and assigns an ID to the client.
+
+Then the player is prompted with two choices: create a game (or room) or join a game (or room).
+
+When a player chooses to create a game, the room's code is given to it by the server. The player can 
+then give it to the other players for them to join with.
+
+When a player chooses to connect, it has to enter the room's code.
+
+When someone joins or leaves a room, all the guests are notified.
+
+When the room has no guests anymore, it is automatically deleted.
+
+When all guests declare themselves as ready, the game starts.
+
+Once a game is started, no one can join it anymore.
+
+## Architecture and stack
+
+![Archi](resources/archi_diagram.png)
 
 # How to launch
 
@@ -41,30 +78,3 @@ If you don't have time and money to kill, you can use [Heroku](https://devcenter
 The free plan lets you host your project 24/7 for the first 21st days of the month (its complicated, fact check this).
 
 Don't forget to change the websocket address in the game's code so it can connect to your server!
-
-# The system
-
-In this room system a client (or frontent) (the player's version of the software) connects via a 
-networking protocol to a server (a private and confidential software, which is part of the backend).
-
-The client declares itself with a name the player has chosen through the game's UI,
-and the server then accepts the connection and assigns an ID to the client.
-
-Then the player is prompted with two choices: create a game (or room) or join a game (or room).
-
-When a player chooses to create a game, the room's code is given to it by the server. The player can 
-then give it to the other players for them to join with.
-
-When a player chooses to connect, it has to enter the room's code.
-
-When someone joins or leaves a room, all the guests are notified.
-
-When the room has no guests anymore, it is automatically deleted.
-
-When all guests declare themselves as ready, the game starts.
-
-Once a game is started, no one can join it anymore.
-
-# Architechture and stack
-
-![Archi](archi_diagram.png)
