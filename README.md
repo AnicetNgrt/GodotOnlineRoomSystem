@@ -1,5 +1,5 @@
 
-![Screenshot](resources/screenshot1-croped.png)
+![Screenshot](resources/screenshot1.png)
 
 - [What is it ?](#what-is-it-)
 - [How it works](#how-it-works)
